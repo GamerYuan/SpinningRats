@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -3011066123579733957}
   - component: {fileID: 3050499204066447506}
   - component: {fileID: -2913996160866615841}
+  - component: {fileID: 5913875878876027894}
   m_Layer: 0
   m_Name: EnemyCat
   m_TagString: Untagged
@@ -122,11 +123,33 @@ MonoBehaviour:
   rb: {fileID: 3050499204066447506}
   player: {fileID: 0}
   aggroRadius: 1
-  deaggroTimer: 1
   chaseSpeed: 1
   patrolSpeed: 1
-  catHP: 20
   catDamage: 10
-  capturedRatCount: 0
-  numberOfAttacks: 0
+  numberOfAttacksPerAggro: 2
+  attackRadius: 0.5
+  timeToDeaggro: 3
+  timeBetweenAttacks: 1
+  aggroDisallowedDuration: 2
+  dashSpeed: 8
   patrolWaypoints: []
+--- !u!95 &5913875878876027894
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2756304143568764155}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1d7267b48c4e77248a73ce319eed8570, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
