@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8055836633983494545}
   - component: {fileID: 7038340420514960167}
+  - component: {fileID: 8183264563264304288}
+  - component: {fileID: 5324205825009002747}
+  - component: {fileID: 4708859698582018704}
   m_Layer: 0
   m_Name: Scheese
   m_TagString: Untagged
@@ -84,3 +87,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &8183264563264304288
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539283316004727354}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.023144305, y: -0.011572123}
+  serializedVersion: 2
+  m_Radius: 0.5441995
+--- !u!58 &5324205825009002747
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539283316004727354}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.025458813, y: -0.013886571}
+  serializedVersion: 2
+  m_Radius: 0.5719725
+--- !u!114 &4708859698582018704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539283316004727354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c39360ae5684b3f9f20cab154f24a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 3
+  sprites:
+  - {fileID: -1872308414, guid: eaf315745bd3e774593d415bd7414c3c, type: 3}
+  - {fileID: 314030732, guid: eaf315745bd3e774593d415bd7414c3c, type: 3}
+  - {fileID: 2121554734, guid: eaf315745bd3e774593d415bd7414c3c, type: 3}

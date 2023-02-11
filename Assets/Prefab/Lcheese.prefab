@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8055836633983494545}
   - component: {fileID: 7038340420514960167}
+  - component: {fileID: 605555604306423759}
+  - component: {fileID: 1162842899860784934}
+  - component: {fileID: 630007932303251698}
   m_Layer: 0
   m_Name: Lcheese
   m_TagString: Untagged
@@ -84,3 +87,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &605555604306423759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539283316004727354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c39360ae5684b3f9f20cab154f24a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 10
+  sprites:
+  - {fileID: 563995372, guid: eaf315745bd3e774593d415bd7414c3c, type: 3}
+  - {fileID: -1367414296, guid: eaf315745bd3e774593d415bd7414c3c, type: 3}
+  - {fileID: 579159134, guid: eaf315745bd3e774593d415bd7414c3c, type: 3}
+--- !u!58 &1162842899860784934
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539283316004727354}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.051142693, y: 0.17899966}
+  serializedVersion: 2
+  m_Radius: 1.9465635
+--- !u!58 &630007932303251698
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539283316004727354}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.068190575, y: 0.1789999}
+  serializedVersion: 2
+  m_Radius: 2.065896

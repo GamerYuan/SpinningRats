@@ -6,9 +6,17 @@ public class Moon : MonoBehaviour
 {
     private float finalDimensions = 100f;
 
+    private RectTransform rt;
+
+    private void Awake()
+    {
+        this.rt = GetComponent<RectTransform>();
+    }
+
     private void Update()
     {
         float ratScale = RatsCount.RatScaleEvent();
-        transform.localScale = new Vector3(ratScale * finalDimensions, ratScale * finalDimensions, 1f);
+        float newDimension = ratScale * finalDimensions;
+        rt.sizeDelta = new Vector2(newDimension, newDimension);
     }
 }
