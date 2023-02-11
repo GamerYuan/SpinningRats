@@ -4,14 +4,27 @@ using System.Diagnostics.CodeAnalysis;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering;
+using FishNet.Object;
+using FishNet.Connection;
+using Cinemachine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private float speed;
     [SerializeField] private float degrees;
     
+    private CinemachineVirtualCamera playerCam;
     private Rigidbody2D rb;
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        if (!IsOwner)
+        { 
+            gameObject.GetComponent<PlayerMovement>().enabled = false;
+        }
+    }
 
     void Awake()
     {
