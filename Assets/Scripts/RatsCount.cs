@@ -30,6 +30,14 @@ public class RatsCount : MonoBehaviour
         return this.ratCount;
     }
 
+    public bool IsLosingRatCount() {
+        return this.ratCount <= 0;
+    }
+
+    public bool IsWinningRatCount() {
+        return this.ratCount >= RatsCount.finalRatCount;
+    }
+
     public void ChangeRatCount(int amount) {
         this.ratCount = Mathf.Max(0, this.ratCount + amount);
         this.ChangeSphereSize();
