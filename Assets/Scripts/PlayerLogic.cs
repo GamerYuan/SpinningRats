@@ -15,6 +15,7 @@ public class PlayerLogic : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        Debug.Log(this.ratCount.IsWinningRatCount());
         if (this.ratCount.IsLosingRatCount()) 
         {
             GameManager.SetGameState(GameState.LoseGame);
