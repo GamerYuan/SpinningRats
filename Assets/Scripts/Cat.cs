@@ -7,16 +7,17 @@ public class Cat : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject player;
 
-    public float aggroRadius = 1f;
-    public float deaggroTimer = 1f;
-    public float chaseSpeed = 1f;
-    public float patrolSpeed = 1f;
-    public float catHP = 20f;
-    public int catDamage = 10;
-    private int capturedRatCount = 0;
+    [SerializeField] private float aggroRadius = 1f;
+    [SerializeField] private float deaggroTimer = 1f;
+    [SerializeField] private float chaseSpeed = 1f;
+    [SerializeField] private float patrolSpeed = 1f;
+    [SerializeField] private float catHP = 20f;
+    [SerializeField] private int catDamage = 10;
+    [SerializeField] private int capturedRatCount = 0;
 
-    public bool patrolState = true;
-    public bool attackState = false;
+    private bool patrolState = true;
+    private bool attackState = false;
+    [SerializeField] private int numberOfAttacks;
 
     //waypoints define the cat's patrol path
     public Transform[] patrolWaypoints;
