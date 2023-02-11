@@ -11,7 +11,7 @@ public class RatsCount : MonoBehaviour
     private static float finalScaleX = 100f;
     private static float finalScaleY = 100f;
     private static float finalScaleZ = 1f;
-    private int ratCount;
+    private float ratCount;
     private float finalMass = 1f * ((float) finalRatCount / initialRats);
 
     private static float sphereScaleFactor = 100f;
@@ -26,7 +26,7 @@ public class RatsCount : MonoBehaviour
         this.ChangeSphereMass();
     }
 
-    public int GetRatCount() {
+    public float GetRatCount() {
         return this.ratCount;
     }
 
@@ -38,21 +38,25 @@ public class RatsCount : MonoBehaviour
         return this.ratCount >= RatsCount.finalRatCount;
     }
 
-    public void ChangeRatCount(int amount) {
+    public void ChangeRatCount(float amount) {
         this.ratCount = Mathf.Max(0, this.ratCount + amount);
         this.ChangeSphereSize();
         this.ChangeSphereMass();
     }
 
     private void ChangeSphereSize() {
-        Debug.Log(this.ratCount);
-        transform.localScale = new Vector3((float) this.ratCount / RatsCount.finalRatCount * RatsCount.finalScaleX * RatsCount.sphereScaleFactor,
-            (float) this.ratCount / RatsCount.finalRatCount * RatsCount.finalScaleY * RatsCount.sphereScaleFactor, RatsCount.finalScaleZ);
-        Debug.Log((float) this.ratCount / RatsCount.finalRatCount * RatsCount.finalScaleX * RatsCount.sphereScaleFactor);
+        //Debug.Log(this.ratCount);
+        transform.localScale = new Vector3(this.ratCount / RatsCount.finalRatCount * RatsCount.finalScaleX * RatsCount.sphereScaleFactor,
+            this.ratCount / RatsCount.finalRatCount * RatsCount.finalScaleY * RatsCount.sphereScaleFactor, RatsCount.finalScaleZ);
+        //Debug.Log(this.ratCount / RatsCount.finalRatCount * RatsCount.finalScaleX * RatsCount.sphereScaleFactor);
     }
 
     private void ChangeSphereMass() {
-        this.rb2D.mass = (float) this.ratCount / RatsCount.finalRatCount * finalMass;
+        this.rb2D.mass = this.ratCount / RatsCount.finalRatCount * finalMass;
+    }
+
+    public float GetSphereMass() {
+        return this.rb2D.mass;
     }
 
 }

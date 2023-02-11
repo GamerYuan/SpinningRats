@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.StartMenu:
                 // Start Menu
-                Debug.Log(GameState.StartMenu.ToString());
+                //Debug.Log(GameState.StartMenu.ToString());
                 if (SceneManager.GetActiveScene().name != GameState.StartMenu.ToString())
                 {
                     SceneManager.LoadScene(GameState.StartMenu.ToString());
