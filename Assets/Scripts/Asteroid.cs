@@ -18,8 +18,6 @@ public class Asteroid : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
             RatsCount playerRatCount = other.gameObject.GetComponent<RatsCount>();
-            Debug.Log(rb.mass);
-            Debug.Log(playerRatCount.GetSphereMass());
             if (rb.mass > playerRatCount.GetSphereMass()) {
                 playerRatCount.ChangeRatCount(- (rb.mass - playerRatCount.GetSphereMass()) * scaleFactor);
             }
