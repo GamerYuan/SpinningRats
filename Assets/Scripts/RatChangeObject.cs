@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StaticObstacle : MonoBehaviour
+public class RatChangeObject : MonoBehaviour
 {
     private int ratDamage;
 
-    public void setRatDamage(int ratDamage) {
+    public void SetRatChangeAmount(int ratDamage) {
         this.ratDamage = ratDamage;
     }
 
-    public int getRatDamage() {
+    public int GetRatChangeAmount() {
         return this.ratDamage;
     }
 

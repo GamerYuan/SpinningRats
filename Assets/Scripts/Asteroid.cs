@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asteroid : StaticObstacle
+public class Asteroid : RatChangeObject
 {
 
     [SerializeField]
@@ -10,7 +10,7 @@ public class Asteroid : StaticObstacle
 
     public void Awake()
     {
-        this.setRatDamage(asteroidRatDamage);
+        this.SetRatChangeAmount(-asteroidRatDamage);
     }
 
 }
