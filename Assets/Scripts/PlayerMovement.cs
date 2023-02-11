@@ -52,13 +52,16 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void TakeDamage()
+    {
+        DamageParticles.Play();
+        StartCoroutine(waitForTime(1.0f));
+        DamageParticles.Stop();
+    }
+
     IEnumerator waitForTime(float timeToWait)
     {
-        float startTime = 0f;
-        while (Time.deltaTime - startTime < timeToWait)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
+        yield return new WaitForSeconds(timeToWait);
     }
     void FixedUpdate()
     {
