@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private float speed;
     [SerializeField] private float degrees;
+    [SerializeField] private float ratDepletionRate;
     
     private Rigidbody2D rb;
 
@@ -34,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)) {
             float rotation = (transform.eulerAngles.z + 90) * Mathf.Deg2Rad;
             rb.AddForce(new Vector2(speed * Mathf.Cos(rotation), speed * Mathf.Sin(rotation)), ForceMode2D.Force);
+            gameObject.GetComponent<RatsCount>().ChangeRatCount(-ratDepletionRate * Time.deltaTime);
+            Debug.Log(gameObject.GetComponent<RatsCount>().GetRatCount());
         }
     }
 }
