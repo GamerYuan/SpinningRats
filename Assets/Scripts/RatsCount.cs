@@ -14,8 +14,7 @@ public class RatsCount : MonoBehaviour
     private float ratCount;
     private float finalMass = 1f * (finalRatCount / initialRats);
 
-    private static float sphereScaleFactor = 100f;
-    private static float massScaleFactor = 2f;
+    private static float sphereScaleFactor = 0.05f;
     private bool stopAnim = false;
     private float timer = 0.5f;
 
@@ -59,6 +58,10 @@ public class RatsCount : MonoBehaviour
         return this.ratCount;
     }
 
+    public float GetSphereSize() {
+        return transform.localScale.x;
+    }
+
     public bool IsLosingRatCount() {
         return this.ratCount <= 0;
     }
@@ -67,9 +70,9 @@ public class RatsCount : MonoBehaviour
         return this.ratCount >= RatsCount.finalRatCount;
     }
 
-    public void Boost(float amount)
+    public void Boost()
     {
-        this.ratCount = Mathf.Max(0, this.ratCount + amount);
+        this.ratCount -= Mathf.Max(1, this.ratCount * 0.01F);
         this.ChangeSphereSize();
         this.ChangeSphereMass();
         RatCountText.UpdateText(this.ratCount);
@@ -94,8 +97,8 @@ public class RatsCount : MonoBehaviour
 
     private void ChangeSphereSize() {
         //Debug.Log(this.ratCount);
-        transform.localScale = new Vector3(this.ratCount / RatsCount.finalRatCount * RatsCount.finalScaleX * RatsCount.sphereScaleFactor,
-            this.ratCount / RatsCount.finalRatCount * RatsCount.finalScaleY * RatsCount.sphereScaleFactor, RatsCount.finalScaleZ);
+        transform.localScale = new Vector3(Mathf.Pow(this.ratCount, 0.3f) * RatsCount.sphereScaleFactor,
+            Mathf.Pow(this.ratCount, 0.3f) * RatsCount.sphereScaleFactor, 1);
         //Debug.Log(this.ratCount / RatsCount.finalRatCount * RatsCount.finalScaleX * RatsCount.sphereScaleFactor);
     }
 

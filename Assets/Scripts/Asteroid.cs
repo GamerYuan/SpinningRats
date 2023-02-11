@@ -5,7 +5,7 @@ public class Asteroid : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    private float scaleFactor = 5f;
+    private float scaleFactor = 0.1f;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -18,8 +18,8 @@ public class Asteroid : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
             RatsCount playerRatCount = other.gameObject.GetComponent<RatsCount>();
-            if (rb.mass > playerRatCount.GetSphereMass()) {
-                playerRatCount.ChangeRatCount(- (rb.mass - playerRatCount.GetSphereMass()) * scaleFactor);
+            if (10 * rb.mass >= playerRatCount.GetRatCount()) {
+                playerRatCount.ChangeRatCount(Mathf.Min(-playerRatCount.GetRatCount() * scaleFactor, -1));
             }
         }
     }
