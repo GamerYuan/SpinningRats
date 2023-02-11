@@ -18,10 +18,21 @@ public class CheeseManager : MonoBehaviour
         {
             for (int j = 0; j < cheeseQuantities[i]; j++)
             {
-                GameObject cheese = Instantiate(CheeseTypes[i]);
-                cheese.transform
-                    .SetPositionAndRotation(new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax)),
-                                            new Quaternion());
+                GameObject CheeseType = CheeseTypes[i];
+                Vector2 pos;
+                int attempts = 0;
+                float cheeseRadius = CheeseType.GetComponent<CircleCollider2D>().radius;
+                do
+                {
+                    pos = new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax));
+                    attempts++;
+                } while (attempts < 20 && Physics2D.OverlapCircleAll(pos, cheeseRadius).Length > 0);
+                if (attempts >= 20) {
+                    Debug.Log("Asteroid spawn failed");
+                    continue;
+                }
+                GameObject cheese = Instantiate(CheeseType);
+                cheese.transform.SetPositionAndRotation(pos, new Quaternion());
                 cheese.transform.parent = transform;
             }
         }
