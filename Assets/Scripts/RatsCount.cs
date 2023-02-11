@@ -51,6 +51,7 @@ public class RatsCount : MonoBehaviour
         this.ratCount = Mathf.Max(0, this.ratCount + amount);
         this.ChangeSphereSize();
         this.ChangeSphereMass();
+        RatCountText.UpdateText(this.ratCount);
     }
 
     private void ChangeSphereSize() {
