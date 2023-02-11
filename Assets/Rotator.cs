@@ -15,7 +15,7 @@ public class Rotator : MonoBehaviour
     void Update()
     {
         if(lockedRotation){
-            this.transform.rotation = Quaternion.identity;
+            this.transform.rotation = Quaternion.Euler(90, -90, 90);
         }
     }
 }
