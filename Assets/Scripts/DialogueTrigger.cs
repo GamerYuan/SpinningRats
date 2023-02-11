@@ -15,7 +15,7 @@ public class DialogueTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string[] controls = new string[2] {
+        string[] controls = new string[4] {
         "Press the 'A' key to turn left and the 'D' key to turn right.", 
         "Pressing both 'A' and 'D' at the same time will boost you forward. Note that dashing consumes rats.",
         "You can only eat cheese that is smaller than you. Bumping into asteroids larger than you will damage you.", 
