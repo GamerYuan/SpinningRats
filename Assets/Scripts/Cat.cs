@@ -26,7 +26,10 @@ public class Cat : MonoBehaviour
     [SerializeField] private float timeToDeaggro = 3f;
     private float escapeTimer = 0f; //timer to see if player escapes cat by remaining outside aggroRadius
     [SerializeField] private float timeBetweenAttacks = 2f;
-    private float timeSinceLastAttack = 0f; 
+    private float timeSinceLastAttack = 0f;
+    [SerializeField] private float aggroDisallowedDuration = 2f;
+    private bool runAggroDisallowedTimer = false;
+    private float aggroDisallowedTimer = 0f;
 
 
     //WAYPOINTS FOR CAT PATROL PATH
@@ -84,8 +87,7 @@ public class Cat : MonoBehaviour
         if (escapeTimer >= timeToDeaggro)
         {
             //player has escaped: cat returns to patrol, and escapeTimer is reset to 0 for the next aggro cycle
-            patrolState = true;
-            attackState = false;
+            deaggroOffPlayer();
             escapeTimer = 0f;
         }
     }
@@ -101,24 +103,53 @@ public class Cat : MonoBehaviour
         return false;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void aggroOnPlayer()
+    {
+        if (aggroAllowedCheck()) 
+        {
+            runAggroDisallowedTimer = false;
+            patrolState = false;
+            attackState = true;
+        }
+    }
+
+    void aggroAllowedCheck()
+    {
+        if (aggroDisallowedTimer >= aggroDisallowedDuration)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    void deaggroOffPlayer()
     {
         patrolState = true;
         attackState = false;
+        runAggroDisallowedTimer = true;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        deaggroOffPlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeSinceLastAttack = timeSinceLastAttack + Time.deltaTime
+        timeSinceLastAttack = timeSinceLastAttack + Time.deltaTime;
+        if (runAggroDisallowedTimer = true)
+        {
+            aggroDisallowedTimer = aggroDisallowedTimer + Time.deltaTime;
+        }
+
         if (patrolState)
         {
             if (Vector2.Distance(transform.position, player.position) < aggroRadius)
             {
                 //if player enters aggroRadius, switch to attackState
-                patrolState = false;
-                attackState = true;
+                aggroOnPlayer();
             }
             else
             {
@@ -139,9 +170,7 @@ public class Cat : MonoBehaviour
                     if (attackedTimes >= numberOfAttacksPerAggro)
                     {
                         //if max amount of dash attacks have been attempted, cat gives up and goes back to patrolling
-                        attackState = false;
-                        patrolState = true;
-                        //TIMER WHERE CAT CANT BE RE-AGGROED 
+                        deaggroOffPlayer();
                     }
                 }
             }
