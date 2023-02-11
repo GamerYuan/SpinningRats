@@ -142,7 +142,7 @@ public class Cat : MonoBehaviour
         {
             if (Vector2.Distance(transform.position, player.transform.position) < 1f)
             {
-            damage_player();
+                damage_player();
             }
 
             if (rb.velocity.x < 0)
