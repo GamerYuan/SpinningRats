@@ -11,7 +11,6 @@ public class Cat : MonoBehaviour
 
     //CAT FIELDS
     [SerializeField] private float aggroRadius = 1f;
-    [SerializeField] private float deaggroTimer = 1f;
     [SerializeField] private float chaseSpeed = 1f;
     [SerializeField] private float patrolSpeed = 1f;
     [SerializeField] private int catDamage = 10;
