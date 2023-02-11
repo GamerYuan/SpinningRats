@@ -121,10 +121,13 @@ public class Cat : MonoBehaviour
 
     bool aggroAllowedCheck()
     {
-        if (aggroDisallowedTimer >= aggroDisallowedDuration)
+        if ( ((aggroDisallowedTimer >= aggroDisallowedDuration) && runAggroDisallowedTimer) || runAggroDisallowedTimer==false )
         {
+            Debug.Log("Aggro allowed");
+            aggroDisallowedTimer = 0f;
             return true;
         }
+        Debug.Log("Aggro not allowed");
         return false;
     }
 
@@ -138,12 +141,15 @@ public class Cat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        deaggroOffPlayer();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Aggro disallowed timer at: " + aggroDisallowedTimer);
+        Debug.Log("Is the aggro disallowed timer running?? " + runAggroDisallowedTimer);
+        Debug.Log("Attack state is: " + attackState);
         timeSinceLastAttack = timeSinceLastAttack + Time.deltaTime;
         if (runAggroDisallowedTimer == true)
         {
