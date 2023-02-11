@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3347350887265202357, guid: 964d50f8be4e1d94fb1cc4f742e29e9c, type: 3}
+  m_Sprite: {fileID: 1141570727, guid: eaf315745bd3e774593d415bd7414c3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,10 +120,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3050499204066447506}
+  player: {fileID: 0}
   aggroRadius: 1
   deaggroTimer: 1
   chaseSpeed: 1
   patrolSpeed: 1
   catHP: 20
+  catDamage: 10
   capturedRatCount: 0
+  numberOfAttacks: 0
   patrolWaypoints: []
