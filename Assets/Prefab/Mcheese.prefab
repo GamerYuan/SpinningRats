@@ -99,7 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c39360ae5684b3f9f20cab154f24a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   size: 1000
+=======
+  size: 100
+>>>>>>> Stashed changes
   sprites:
   - {fileID: 501266176, guid: eaf315745bd3e774593d415bd7414c3c, type: 3}
   - {fileID: -439687440, guid: eaf315745bd3e774593d415bd7414c3c, type: 3}

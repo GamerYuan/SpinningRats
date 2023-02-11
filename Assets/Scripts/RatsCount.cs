@@ -84,6 +84,14 @@ public class RatsCount : MonoBehaviour
         RatCountText.UpdateText(this.ratCount);
     }
 
+    public void addRat(float amount)
+    {
+        this.ratCount = Mathf.Max(0, this.ratCount + amount);
+        this.ChangeSphereSize();
+        this.ChangeSphereMass();
+        RatCountText.UpdateText(this.ratCount);
+    }
+
     private void ChangeSphereSize() {
         //Debug.Log(this.ratCount);
         transform.localScale = new Vector3(this.ratCount / RatsCount.finalRatCount * RatsCount.finalScaleX * RatsCount.sphereScaleFactor,

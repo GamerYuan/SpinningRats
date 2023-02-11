@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -53,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
             BoostParticles.Play();
             stopAnim = true;
             float rotation = (transform.eulerAngles.z + 90) * Mathf.Deg2Rad;
-            ratCount.Boost(-5);
+            ratCount.Boost(-1);
             float currCount = ratCount.GetRatCount();
             float currSpeed = speed * currCount / initialMass;
             rb.AddForce(new Vector2(currSpeed * Mathf.Cos(rotation), currSpeed * Mathf.Sin(rotation)), ForceMode2D.Impulse);
