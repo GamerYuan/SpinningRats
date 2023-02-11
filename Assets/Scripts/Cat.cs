@@ -66,11 +66,8 @@ public class Cat : MonoBehaviour
 
         void damage_player()
         {
-            /*
-            player.HP = player.HP - catDamage;
-            capturedRatCount = capturedRatCount + catDamage;
-            */
-
+            RatsCount smth = player.GetComponent<RatsCount>();
+            smth.ChangeRatCount((-1) * catDamage);
         }
 
         void attemptDashAttack()
