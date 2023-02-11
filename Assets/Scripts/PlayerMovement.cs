@@ -43,14 +43,13 @@ public class PlayerMovement : MonoBehaviour
         if (timer <= 0f)
         {
             stopAnim = false;
-            particle.GetComponent<Rotator>().lockedRotation = false;
             BoostParticles.Stop();
             timer = 1f;
         }
         
         if ((Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.D)) || (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.D)))
         {
-            particle.GetComponent<Rotator>().lockedRotation = true;
+            
             BoostParticles.Play();
             stopAnim = true;
             float rotation = (transform.eulerAngles.z + 90) * Mathf.Deg2Rad;
