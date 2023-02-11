@@ -16,11 +16,14 @@ public class RatsCount : MonoBehaviour
 
     private static float sphereScaleFactor = 100f;
     private static float massScaleFactor = 2f;
+    private bool stopAnim = false;
+    private float timer = 0.5f;
 
     public delegate float RatScale();
     public static RatScale RatScaleEvent;
 
     private Rigidbody2D rb2D;
+    private ParticleSystem DamageParticles;
 
     private void Awake() {
         this.ratCount = RatsCount.initialRats;
@@ -28,6 +31,23 @@ public class RatsCount : MonoBehaviour
         this.ChangeSphereSize();
         this.ChangeSphereMass();
         RatsCount.RatScaleEvent += GetRatScale;
+        this.DamageParticles = transform.GetChild(2).GetComponent<ParticleSystem>();
+        DamageParticles.Stop();
+    }
+
+    private void Update()
+    {
+        if (stopAnim)
+        {
+            timer -= Time.deltaTime;
+        }
+
+        if (timer <= 0f)
+        {
+            stopAnim = false;
+            DamageParticles.Stop();
+            timer = 0.5f;
+        }
     }
 
     private void OnDestroy()
@@ -47,11 +67,21 @@ public class RatsCount : MonoBehaviour
         return this.ratCount >= RatsCount.finalRatCount;
     }
 
+    public void Boost(float amount)
+    {
+        this.ratCount = Mathf.Max(0, this.ratCount + amount);
+        this.ChangeSphereSize();
+        this.ChangeSphereMass();
+        //RatCountText.UpdateText(this.ratCount);
+    }
+
     public void ChangeRatCount(float amount) {
         this.ratCount = Mathf.Max(0, this.ratCount + amount);
         this.ChangeSphereSize();
         this.ChangeSphereMass();
-        RatCountText.UpdateText(this.ratCount);
+        DamageParticles.Play();
+        stopAnim = true;
+        //RatCountText.UpdateText(this.ratCount);
     }
 
     private void ChangeSphereSize() {
