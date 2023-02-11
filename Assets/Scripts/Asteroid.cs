@@ -4,21 +4,30 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
 
-    private float mass;
+    [SerializeField] private float density;
+
+    private Rigidbody2D rb;
 
     private float scaleFactor = 5f;
 
     private void Awake() {
-        this.mass = this.GetComponent<Rigidbody2D>().mass;
+        rb = this.GetComponent<Rigidbody2D>();
+        float scale = rb.mass / density;
+        this.transform.localScale = new Vector3(scale, scale, 1);
     }
+
+    public void setMass(float newMass) {
+        this.transform.localScale *= newMass / rb.mass;
+        rb.mass = newMass;
+    } 
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
             RatsCount playerRatCount = other.gameObject.GetComponent<RatsCount>();
-            Debug.Log(this.mass);
+            Debug.Log(rb.mass);
             Debug.Log(playerRatCount.GetSphereMass());
-            if (this.mass > playerRatCount.GetSphereMass()) {
-                playerRatCount.ChangeRatCount(- (this.mass - playerRatCount.GetSphereMass()) * scaleFactor);
+            if (rb.mass > playerRatCount.GetSphereMass()) {
+                playerRatCount.ChangeRatCount(- (rb.mass - playerRatCount.GetSphereMass()) * scaleFactor);
             }
         }
     }
