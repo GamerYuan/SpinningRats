@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  degrees: 50
+  degrees: 15
 --- !u!50 &5922360425994506988
 Rigidbody2D:
   serializedVersion: 4
