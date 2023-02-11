@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 26699856}
   - component: {fileID: 26699855}
+  - component: {fileID: 26699857}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -194,6 +195,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &26699857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26699854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3dfb4454aea8c46b24c1c017ace2f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &512337801
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +636,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3781755022808941147, guid: 4f16896aa62cb91498b2b05da48adec7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4f16896aa62cb91498b2b05da48adec7, type: 3}
 --- !u!4 &1536061098 stripped
 Transform:
