@@ -62,7 +62,11 @@ public class Cat : MonoBehaviour
     void chase_player()
     {
         Debug.Log("Chasing player");
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, chaseSpeed * Time.deltaTime);
+        float angle = CalculateAngle(player.transform.position);
+        Debug.Log(angle);
+
+        rb.velocity = new Vector2(chaseSpeed * Mathf.Cos(angle), chaseSpeed * Mathf.Sin(angle));
+
         //var toPlayer = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
         //rb.velocity = toPlayer;
         LookAt2D(player.transform.position);
@@ -205,5 +209,13 @@ public class Cat : MonoBehaviour
             }
         }
 
+    }
+
+    private float CalculateAngle(Vector2 playerpos)
+    {
+        float x = playerpos.x - transform.position.x;
+        float y = playerpos.y - transform.position.y;
+
+        return Mathf.Atan2(y, x);
     }
 }
