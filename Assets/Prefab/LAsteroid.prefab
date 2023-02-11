@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3939994477524535881}
   - component: {fileID: 2114055717285465709}
   - component: {fileID: 4040786622751564500}
+  - component: {fileID: 698372687229283631}
   - component: {fileID: 691071131541549284}
   m_Layer: 0
   m_Name: LAsteroid
@@ -218,6 +219,41 @@ MonoBehaviour:
   m_EnableTangents: 0
   m_GeometryCached: 0
   m_UTess2D: 0
+--- !u!60 &698372687229283631
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2432692649184224006}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.2034891, y: 2.8343673}
+      - {x: 0.2434572, y: 2.4910688}
+      - {x: -1.7469342, y: 0.06839168}
+      - {x: -4.410206, y: -0.73059535}
+      - {x: -3.762827, y: -1.4224956}
+      - {x: -2.741926, y: -1.8199291}
+      - {x: -2.0864096, y: -2.2856042}
+      - {x: 0.29027748, y: -1.538269}
+      - {x: 1.808708, y: -0.50576043}
+      - {x: 2.1521971, y: -0.07925737}
 --- !u!68 &691071131541549284
 EdgeCollider2D:
   m_ObjectHideFlags: 0
