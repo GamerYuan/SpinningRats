@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
-
-    [SerializeField] private float density;
-
     private Rigidbody2D rb;
 
     private float scaleFactor = 5f;
 
     private void Awake() {
         rb = this.GetComponent<Rigidbody2D>();
-        float scale = rb.mass / density;
-        this.transform.localScale = new Vector3(scale, scale, 1);
     }
 
     public void setMass(float newMass) {
-        this.transform.localScale *= newMass / rb.mass;
         rb.mass = newMass;
     } 
 
