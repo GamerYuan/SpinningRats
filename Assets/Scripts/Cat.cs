@@ -25,13 +25,12 @@ public class Cat : MonoBehaviour
     [SerializeField] private float attackRadius = 0.5f; //cat will attempt dash attack when within attackRadius
     [SerializeField] private float timeToDeaggro = 3f;
     private float escapeTimer = 0f; //timer to see if player escapes cat by remaining outside aggroRadius
-    [SerializeField] private float timeBetweenAttacks = 2f;
+    [SerializeField] private float timeBetweenAttacks = 1f;
     private float timeSinceLastAttack = 0f;
     [SerializeField] private float aggroDisallowedDuration = 2f;
     private bool runAggroDisallowedTimer = false;
     private float aggroDisallowedTimer = 0f;
     [SerializeField] private float dashSpeed = 8f;
-
 
     //WAYPOINTS FOR CAT PATROL PATH
     [SerializeField] private Transform[] patrolWaypoints;
@@ -62,6 +61,7 @@ public class Cat : MonoBehaviour
 
     void chase_player()
     {
+        Debug.Log("Chasing player");
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, chaseSpeed * Time.deltaTime);
         //var toPlayer = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
         //rb.velocity = toPlayer;
@@ -83,6 +83,7 @@ public class Cat : MonoBehaviour
         float vectorMagnitude = toPlayer.magnitude;
         var unitToPlayer = new Vector2((toPlayer.x / vectorMagnitude), (toPlayer.y / vectorMagnitude));
         rb.velocity = new Vector2(toPlayer.x * dashSpeed, toPlayer.y * dashSpeed);
+        //rb.velocity = new Vector2(0, 0); 
     }
 
     void escapingCheck()
@@ -121,10 +122,9 @@ public class Cat : MonoBehaviour
 
     bool aggroAllowedCheck()
     {
-        if ( ((aggroDisallowedTimer >= aggroDisallowedDuration) && runAggroDisallowedTimer) || runAggroDisallowedTimer==false )
+        if (runAggroDisallowedTimer == false)
         {
             Debug.Log("Aggro allowed");
-            aggroDisallowedTimer = 0f;
             return true;
         }
         Debug.Log("Aggro not allowed");
@@ -151,9 +151,15 @@ public class Cat : MonoBehaviour
         Debug.Log("Is the aggro disallowed timer running?? " + runAggroDisallowedTimer);
         Debug.Log("Attack state is: " + attackState);
         timeSinceLastAttack = timeSinceLastAttack + Time.deltaTime;
+        //rb.velocity = new Vector2(0, 0);
         if (runAggroDisallowedTimer == true)
         {
             aggroDisallowedTimer = aggroDisallowedTimer + Time.deltaTime;
+            if (aggroDisallowedTimer >= aggroDisallowedDuration)
+            {
+                aggroDisallowedTimer = 0f;
+                runAggroDisallowedTimer = false;
+            }
         }
 
         if (patrolState)
