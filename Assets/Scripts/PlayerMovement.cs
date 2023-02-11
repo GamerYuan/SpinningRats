@@ -22,8 +22,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        this.BoostParticles = GetComponents<ParticleSystem>()[0];
-        this.DamageParticles = GetComponents<ParticleSystem>()[1];
+        this.BoostParticles = transform.GetChild(1).GetComponent<ParticleSystem>();
+        this.DamageParticles = transform.GetChild(2).GetComponent<ParticleSystem>();
+        DamageParticles.Stop();
+        BoostParticles.Stop();
         rb = GetComponent<Rigidbody2D>();
         ratCount = GetComponent<RatsCount>();
     }
