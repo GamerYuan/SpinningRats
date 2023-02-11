@@ -4,6 +4,11 @@ using UnityEngine;
 public class Cheese : MonoBehaviour
 {
     [SerializeField] private int size;
+    [SerializeField] private List<Sprite> sprites;
+
+    private void Awake() {
+        gameObject.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Count)];
+    }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player") &&
