@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8055836633983494545}
   - component: {fileID: 7038340420514960167}
   m_Layer: 0
-  m_Name: Cheese2
+  m_Name: Lcheese
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.6841278, b: 0, a: 1}
+  m_Sprite: {fileID: 563995372, guid: eaf315745bd3e774593d415bd7414c3c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
