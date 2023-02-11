@@ -17,8 +17,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private RatsCount ratCount;
 
+    private ParticleSystem BoostParticles;
+    private ParticleSystem DamageParticles;
+
     void Awake()
     {
+        this.BoostParticles = GetComponents<ParticleSystem>()[0];
+        this.DamageParticles = GetComponents<ParticleSystem>()[1];
         rb = GetComponent<Rigidbody2D>();
         ratCount = GetComponent<RatsCount>();
     }
@@ -32,7 +37,25 @@ public class PlayerMovement : MonoBehaviour
             ratCount.ChangeRatCount(-5);
             float currCount = ratCount.GetRatCount();
             float currSpeed = speed * currCount / initialMass;
+            BoostAnim();
             rb.AddForce(new Vector2(currSpeed * Mathf.Cos(rotation), currSpeed * Mathf.Sin(rotation)), ForceMode2D.Impulse);
+        }
+    }
+
+    void BoostAnim()
+    {
+        BoostParticles.Play();
+        StartCoroutine(waitForTime(5.0f));
+        BoostParticles.Stop();
+
+    }
+
+    IEnumerator waitForTime(float timeToWait)
+    {
+        float startTime = 0f;
+        while (Time.deltaTime - startTime < timeToWait)
+        {
+            yield return new WaitForSeconds(0.1f);
         }
     }
     void FixedUpdate()
