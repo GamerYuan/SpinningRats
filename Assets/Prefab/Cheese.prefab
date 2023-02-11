@@ -151,4 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c39360ae5684b3f9f20cab154f24a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cheeseGainAmount: 10
+  size: 1

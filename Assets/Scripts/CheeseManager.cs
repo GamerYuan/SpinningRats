@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CheeseManager : MonoBehaviour
 {
-    public List<GameObject> CheeseTypes;
-    public List<int> cheeseQuantities;
-    public float xMin;
-    public float xMax;
-    public float yMin;
-    public float yMax;
+    [SerializeField] private List<GameObject> CheeseTypes;
+    [SerializeField] private List<int> cheeseQuantities;
+    [SerializeField] private float xMin;
+    [SerializeField] private float xMax;
+    [SerializeField] private float yMin;
+    [SerializeField] private float yMax;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +20,17 @@ public class CheeseManager : MonoBehaviour
             {
                 GameObject cheese = Instantiate(CheeseTypes[i]);
                 cheese.transform
-                .SetPositionAndRotation(new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax)),
-                                        new Quaternion());
-                cheese.transform.parent = this.transform;
+                    .SetPositionAndRotation(new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax)),
+                                            new Quaternion());
+                cheese.transform.parent = transform;
             }
         }
+    }
+
+    public void RespawnCheese(GameObject cheese)
+    {
+        cheese.transform
+            .SetPositionAndRotation(new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax)),
+                                    new Quaternion());
     }
 }
