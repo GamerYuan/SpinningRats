@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AsteroidTypes:
   - {fileID: 2432692649184224006, guid: f5c8def62d2eb4e0a90590ec86c0efcb, type: 3}
+  - {fileID: 2432692649184224006, guid: 23ff533fb3e15412e9e217aca3b910af, type: 3}
   numAsteroids: 5
   xMin: -5
   xMax: 5
