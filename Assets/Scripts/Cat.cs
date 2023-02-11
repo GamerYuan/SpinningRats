@@ -138,6 +138,11 @@ public class Cat : MonoBehaviour
         // Update is called once per frame
         void Update()
         {
+            if (Vector2.Distance(transform.position, player.transform.position) < 1f)
+            {
+            damage_player();
+            }
+
             if (rb.velocity.x < 0)
             {
                 spi.flipY = true;
