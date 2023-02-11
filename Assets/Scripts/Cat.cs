@@ -30,6 +30,7 @@ public class Cat : MonoBehaviour
     [SerializeField] private float aggroDisallowedDuration = 2f;
     private bool runAggroDisallowedTimer = false;
     private float aggroDisallowedTimer = 0f;
+    [SerializeField] private float dashSpeed = 8f;
 
 
     //WAYPOINTS FOR CAT PATROL PATH
@@ -61,8 +62,10 @@ public class Cat : MonoBehaviour
 
     void chase_player()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
-        LookAt2D(player.position);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, chaseSpeed * Time.deltaTime);
+        //var toPlayer = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
+        //rb.velocity = toPlayer;
+        LookAt2D(player.transform.position);
     }
 
     void damage_player()
@@ -76,7 +79,10 @@ public class Cat : MonoBehaviour
 
     void attemptDashAttack()
     {
-
+        var toPlayer = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
+        float vectorMagnitude = toPlayer.magnitude;
+        var unitToPlayer = new Vector2((toPlayer.x / vectorMagnitude), (toPlayer.y / vectorMagnitude));
+        rb.velocity = new Vector2(toPlayer.x * dashSpeed, toPlayer.y * dashSpeed);
     }
 
     void escapingCheck()
@@ -92,7 +98,7 @@ public class Cat : MonoBehaviour
         }
     }
 
-    void timeBetweenAttacksCheck()
+    bool timeBetweenAttacksCheck()
     {
         //returns True if enough time has passed, and another dash attack is allowed
         if (timeSinceLastAttack >= timeBetweenAttacks)
@@ -113,7 +119,7 @@ public class Cat : MonoBehaviour
         }
     }
 
-    void aggroAllowedCheck()
+    bool aggroAllowedCheck()
     {
         if (aggroDisallowedTimer >= aggroDisallowedDuration)
         {
@@ -139,14 +145,14 @@ public class Cat : MonoBehaviour
     void Update()
     {
         timeSinceLastAttack = timeSinceLastAttack + Time.deltaTime;
-        if (runAggroDisallowedTimer = true)
+        if (runAggroDisallowedTimer == true)
         {
             aggroDisallowedTimer = aggroDisallowedTimer + Time.deltaTime;
         }
 
         if (patrolState)
         {
-            if (Vector2.Distance(transform.position, player.position) < aggroRadius)
+            if (Vector2.Distance(transform.position, player.transform.position) < aggroRadius)
             {
                 //if player enters aggroRadius, switch to attackState
                 aggroOnPlayer();
@@ -159,7 +165,7 @@ public class Cat : MonoBehaviour
         }
         else if (attackState)
         {
-            if (Vector2.Distance(transform.position, player.position) < attackRadius)
+            if (Vector2.Distance(transform.position, player.transform.position) < attackRadius)
             {
                 escapeTimer = 0f;
                 if (timeBetweenAttacksCheck())
@@ -174,7 +180,7 @@ public class Cat : MonoBehaviour
                     }
                 }
             }
-            else if ( (Vector2.Distance(transform.position, player.position) > attackRadius) && (Vector2.Distance(transform.position, player.position) < aggroRadius) )
+            else if ( (Vector2.Distance(transform.position, player.transform.position) > attackRadius) && (Vector2.Distance(transform.position, player.transform.position) < aggroRadius) )
             {
                 escapeTimer= 0f;
                 //if player is between attackRadius and aggroRadius, cat just chases player
