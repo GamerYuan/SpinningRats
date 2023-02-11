@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 4539283316004727354, guid: 819c402f8f67b6f4bb5df032351eddbf, type: 3}
   - {fileID: 4539283316004727354, guid: 18d20468aeff4c845ad40fc6aba59471, type: 3}
   cheeseQuantities: 0a0000000a0000000a0000000a000000
-  xMin: -5
-  xMax: 5
-  yMin: -5
-  yMax: 5
+  xMin: -20
+  xMax: 20
+  yMin: -20
+  yMax: 20

@@ -37,7 +37,7 @@ public class AsteroidManager : MonoBehaviour
             asteroid.transform.SetPositionAndRotation(pos, new Quaternion());
             asteroid.transform.localScale *= asteroidLength / unscaledAsteroidWidth;
             asteroid.GetComponent<Asteroid>().setMass(asteroidMass);
-            transform.parent = transform;
+            asteroid.transform.parent = transform;
         }
     }
 }
