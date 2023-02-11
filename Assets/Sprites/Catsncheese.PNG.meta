@@ -300,10 +300,10 @@ TextureImporter:
       name: Moon
       rect:
         serializedVersion: 2
-        x: 1478
-        y: 68
-        width: 1000
-        height: 1000
+        x: 1410
+        y: 0
+        width: 1130
+        height: 1130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
