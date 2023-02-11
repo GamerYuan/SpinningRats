@@ -17,6 +17,9 @@ public class RatsCount : MonoBehaviour
     private static float sphereScaleFactor = 100f;
     private static float massScaleFactor = 2f;
 
+    public delegate float RatScale();
+    public static RatScale RatScaleEvent;
+
     private Rigidbody2D rb2D;
 
     private void Awake() {
@@ -24,6 +27,12 @@ public class RatsCount : MonoBehaviour
         this.rb2D = GetComponent<Rigidbody2D>();
         this.ChangeSphereSize();
         this.ChangeSphereMass();
+        RatsCount.RatScaleEvent += GetRatScale;
+    }
+
+    private void OnDestroy()
+    {
+        RatsCount.RatScaleEvent -= GetRatScale;
     }
 
     public float GetRatCount() {
@@ -57,6 +66,11 @@ public class RatsCount : MonoBehaviour
 
     public float GetSphereMass() {
         return this.rb2D.mass;
+    }
+
+    private float GetRatScale()
+    {
+        return this.ratCount / RatsCount.finalRatCount;
     }
 
 }
