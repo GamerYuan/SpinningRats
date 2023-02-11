@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         this.BoostParticles = GetComponents<ParticleSystem>()[0];
-        this.DamageParticles = GetComponent<ParticleSystem>()[1];
+        this.DamageParticles = GetComponents<ParticleSystem>()[1];
         rb = GetComponent<Rigidbody2D>();
         ratCount = GetComponent<RatsCount>();
     }
@@ -44,9 +44,9 @@ public class PlayerMovement : MonoBehaviour
 
     void BoostAnim()
     {
-        BoostParticles.play;
-        Coroutine.start(waitForTime(5.0f));
-        BoostParticles.stop;
+        BoostParticles.Play();
+        StartCoroutine(waitForTime(5.0f));
+        BoostParticles.Stop();
 
     }
 
