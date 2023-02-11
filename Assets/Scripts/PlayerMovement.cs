@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -13,60 +14,62 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float degrees;
 
     private float initialMass = 100f;
+    private bool stopAnim = false;
+    private float timer = 1f;
     
     private Rigidbody2D rb;
     private RatsCount ratCount;
-
+    private Transform particle;
     private ParticleSystem BoostParticles;
-    private ParticleSystem DamageParticles;
 
     void Awake()
     {
+        this.particle = transform.GetChild(1);
         this.BoostParticles = transform.GetChild(1).GetComponent<ParticleSystem>();
-        this.DamageParticles = transform.GetChild(2).GetComponent<ParticleSystem>();
-        DamageParticles.Stop();
         BoostParticles.Stop();
         rb = GetComponent<Rigidbody2D>();
         ratCount = GetComponent<RatsCount>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (stopAnim)
+        {
+            timer -= Time.deltaTime;
+        }
+
+        if (timer <= 0f)
+        {
+            stopAnim = false;
+            particle.GetComponent<Rotator>().lockedRotation = false;
+            BoostParticles.Stop();
+            timer = 1f;
+        }
+        
         if ((Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.D)) || (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.D)))
         {
+            particle.GetComponent<Rotator>().lockedRotation = true;
+            BoostParticles.Play();
+            stopAnim = true;
             float rotation = (transform.eulerAngles.z + 90) * Mathf.Deg2Rad;
-            ratCount.ChangeRatCount(-5);
+            ratCount.Boost(-5);
             float currCount = ratCount.GetRatCount();
             float currSpeed = speed * currCount / initialMass;
-            BoostAnim();
             rb.AddForce(new Vector2(currSpeed * Mathf.Cos(rotation), currSpeed * Mathf.Sin(rotation)), ForceMode2D.Impulse);
         }
     }
 
-    void BoostAnim()
-    {
-        BoostParticles.Play();
-        StartCoroutine(waitForTime(5.0f));
-        BoostParticles.Stop();
-
-    }
-
-    public void TakeDamage()
-    {
-        DamageParticles.Play();
-        StartCoroutine(waitForTime(1.0f));
-        DamageParticles.Stop();
-    }
-
-    IEnumerator waitForTime(float timeToWait)
-    {
-        yield return new WaitForSeconds(timeToWait);
-    }
     void FixedUpdate()
     {
         float horizontalMove = Input.GetAxisRaw("Horizontal");
         
+        if (!stopAnim)
+        {
+            BoostParticles.Stop();
+        }
+
         if (horizontalMove != 0f)
         {
             float currCount = ratCount.GetRatCount();

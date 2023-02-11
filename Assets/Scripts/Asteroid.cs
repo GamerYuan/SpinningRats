@@ -8,7 +8,7 @@ public class Asteroid : MonoBehaviour
     private float scaleFactor = 5f;
 
     private void Awake() {
-        rb = this.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void setMass(float newMass) {

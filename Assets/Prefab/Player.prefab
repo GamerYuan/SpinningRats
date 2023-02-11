@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 8727152579404681150}
   - component: {fileID: 2713598008723980980}
   - component: {fileID: 7793350827420469324}
+  - component: {fileID: 2104443317135309994}
   m_Layer: 0
   m_Name: Damage Particles
   m_TagString: Untagged
@@ -4879,7 +4880,7 @@ ParticleSystemRenderer:
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
-  m_RenderAlignment: 0
+  m_RenderAlignment: 1
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
@@ -4898,6 +4899,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &2104443317135309994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4596419911176588965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04a2da5e434d0948ad2abb561e74913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedRotation: 1
 --- !u!1 &5922360425994506979
 GameObject:
   m_ObjectHideFlags: 0
@@ -5232,6 +5246,7 @@ GameObject:
   - component: {fileID: 1805938482295266315}
   - component: {fileID: 6502822345055055532}
   - component: {fileID: 5532774101010045869}
+  - component: {fileID: 1393659959621595512}
   m_Layer: 0
   m_Name: Boost Particles
   m_TagString: Untagged
@@ -10016,7 +10031,7 @@ ParticleSystemRenderer:
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
-  m_RenderAlignment: 0
+  m_RenderAlignment: 1
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
@@ -10035,3 +10050,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1393659959621595512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8724339832298236728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04a2da5e434d0948ad2abb561e74913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedRotation: 1
