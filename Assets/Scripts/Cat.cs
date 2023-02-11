@@ -61,14 +61,8 @@ public class Cat : MonoBehaviour
 
     void chase_player()
     {
-        Debug.Log("Chasing player");
         float angle = CalculateAngle(player.transform.position);
-        Debug.Log(angle);
-
         rb.velocity = new Vector2(chaseSpeed * Mathf.Cos(angle), chaseSpeed * Mathf.Sin(angle));
-
-        //var toPlayer = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
-        //rb.velocity = toPlayer;
         LookAt2D(player.transform.position);
     }
 
@@ -87,7 +81,6 @@ public class Cat : MonoBehaviour
         float vectorMagnitude = toPlayer.magnitude;
         var unitToPlayer = new Vector2((toPlayer.x / vectorMagnitude), (toPlayer.y / vectorMagnitude));
         rb.velocity = new Vector2(toPlayer.x * dashSpeed, toPlayer.y * dashSpeed);
-        //rb.velocity = new Vector2(0, 0); 
     }
 
     void escapingCheck()
@@ -142,20 +135,10 @@ public class Cat : MonoBehaviour
         runAggroDisallowedTimer = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Aggro disallowed timer at: " + aggroDisallowedTimer);
-        Debug.Log("Is the aggro disallowed timer running?? " + runAggroDisallowedTimer);
-        Debug.Log("Attack state is: " + attackState);
         timeSinceLastAttack = timeSinceLastAttack + Time.deltaTime;
-        //rb.velocity = new Vector2(0, 0);
         if (runAggroDisallowedTimer == true)
         {
             aggroDisallowedTimer = aggroDisallowedTimer + Time.deltaTime;
