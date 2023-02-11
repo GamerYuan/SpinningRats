@@ -7,6 +7,7 @@ public class Cat : MonoBehaviour
     //OBJECT REFERENCES
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject player;
+    private SpriteRenderer spi;
 
     //CAT FIELDS
     [SerializeField] private float aggroRadius = 1f;
@@ -135,9 +136,23 @@ public class Cat : MonoBehaviour
         runAggroDisallowedTimer = true;
     }
 
+    void Start()
+    {
+        spi = GetComponent<SpriteRenderer>();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (rb.velocity.x < 0)
+        {
+            spi.flipY = true;
+        }
+        else
+        {
+            spi.flipY = false;
+        }
+
         timeSinceLastAttack = timeSinceLastAttack + Time.deltaTime;
         if (runAggroDisallowedTimer == true)
         {
