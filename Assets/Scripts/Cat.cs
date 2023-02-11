@@ -4,24 +4,36 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public GameObject player;
+    //OBJECT REFERENCES
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private GameObject player;
 
-    public float aggroRadius = 1f;
-    public float deaggroTimer = 1f;
-    public float chaseSpeed = 1f;
-    public float patrolSpeed = 1f;
-    public float catHP = 20f;
-    public int catDamage = 10;
-    private int capturedRatCount = 0;
+    //CAT FIELDS
+    [SerializeField] private float aggroRadius = 1f;
+    [SerializeField] private float deaggroTimer = 1f;
+    [SerializeField] private float chaseSpeed = 1f;
+    [SerializeField] private float patrolSpeed = 1f;
+    [SerializeField] private float catHP = 20f;
+    [SerializeField] private int catDamage = 10;
+    [SerializeField] private int capturedRatCount = 0;
 
-    public bool patrolState = true;
-    public bool attackState = false;
+    //ATTACK & PATROL VARIABLES
+    private bool patrolState = true;
+    private bool attackState = false;
+    [SerializeField] private int numberOfAttacksPerAggro = 2;
+    private int attackedTimes = 0;
+    [SerializeField] private float attackRadius = 0.5f; //cat will attempt dash attack when within attackRadius
+    [SerializeField] private float timeToDeaggro = 3f;
+    private float escapeTimer = 0f; //timer to see if player escapes cat by remaining outside aggroRadius
+    [SerializeField] private float timeBetweenAttacks = 2f;
+    private float timeSinceLastAttack = 0f; 
 
-    //waypoints define the cat's patrol path
-    public Transform[] patrolWaypoints;
+
+    //WAYPOINTS FOR CAT PATROL PATH
+    [SerializeField] private Transform[] patrolWaypoints;
     private int currentWaypointIndex = 0;
 
+    //For cat to look at the target it is heading towards
     void LookAt2D(Vector2 target)
     {
         Vector2 current = transform.position;
@@ -46,17 +58,11 @@ public class Cat : MonoBehaviour
 
     void chase_player()
     {
-        /*
-        if (Vector2.Distance(transform.position, player.position) < 0.1f)
-        {
-            attack_player()
-            //wait a while
-        }
-        */
-        
+        transform.position = Vector2.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
+        LookAt2D(player.position);
     }
 
-    void attack_player()
+    void damage_player()
     {
         /*
         player.HP = player.HP - catDamage;
@@ -65,29 +71,92 @@ public class Cat : MonoBehaviour
 
     }
 
-    void return_to_patrol_path()
+    void attemptDashAttack()
     {
 
+    }
+
+    void escapingCheck()
+    {
+        //player is outside aggroRadius, escapeTimer begins incrementing
+        escapeTimer = escapeTimer + Time.deltaTime;
+
+        if (escapeTimer >= timeToDeaggro)
+        {
+            //player has escaped: cat returns to patrol, and escapeTimer is reset to 0 for the next aggro cycle
+            patrolState = true;
+            attackState = false;
+            escapeTimer = 0f;
+        }
+    }
+
+    void timeBetweenAttacksCheck()
+    {
+        //returns True if enough time has passed, and another dash attack is allowed
+        if (timeSinceLastAttack >= timeBetweenAttacks)
+        {
+            timeSinceLastAttack = 0f;
+            return true;
+        }
+        return false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        patrolState = true;
+        attackState = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Vector2.Distance(transform.position, player.position) < aggroRadius) 
+        timeSinceLastAttack = timeSinceLastAttack + Time.deltaTime
+        if (patrolState)
         {
-            chase_player();
+            if (Vector2.Distance(transform.position, player.position) < aggroRadius)
+            {
+                //if player enters aggroRadius, switch to attackState
+                patrolState = false;
+                attackState = true;
+            }
+            else
+            {
+                //if player is not in aggroRadius, patrol passively
+                patrol();
+            }
         }
-        else
+        else if (attackState)
         {
-            patrol();
+            if (Vector2.Distance(transform.position, player.position) < attackRadius)
+            {
+                escapeTimer = 0f;
+                if (timeBetweenAttacksCheck())
+                {
+                    //if player enters attackRadius AND enough time has passed since last attack, cat attempts dash attack
+                    attemptDashAttack();
+                    attackedTimes++;
+                    if (attackedTimes >= numberOfAttacksPerAggro)
+                    {
+                        //if max amount of dash attacks have been attempted, cat gives up and goes back to patrolling
+                        attackState = false;
+                        patrolState = true;
+                        //TIMER WHERE CAT CANT BE RE-AGGROED 
+                    }
+                }
+            }
+            else if ( (Vector2.Distance(transform.position, player.position) > attackRadius) && (Vector2.Distance(transform.position, player.position) < aggroRadius) )
+            {
+                escapeTimer= 0f;
+                //if player is between attackRadius and aggroRadius, cat just chases player
+                chase_player();
+            }
+            else
+            {
+                //timer stuff for deaggroing as player remains outside aggroRadius for a duration
+                escapingCheck();
+            }
         }
-        */
+
     }
 }
