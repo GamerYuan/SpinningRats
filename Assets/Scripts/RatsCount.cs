@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class RatsCount : MonoBehaviour
 {
-    private static int initialRats = 100;
-    private static int finalRatCount = 1000000;
+    private static float initialRats = 100;
+    private static float finalRatCount = 1000000;
     private static float initialSphereMass = 5f;
 
     private static float finalScaleX = 100f;
     private static float finalScaleY = 100f;
     private static float finalScaleZ = 1f;
     private float ratCount;
-    private float finalMass = 1f * ((float) finalRatCount / initialRats);
+    private float finalMass = 1f * (finalRatCount / initialRats);
 
     private static float sphereScaleFactor = 100f;
     private static float massScaleFactor = 2f;

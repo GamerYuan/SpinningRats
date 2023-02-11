@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   degrees: 50
+  ratDepletionRate: 0.01
 --- !u!50 &5922360425994506988
 Rigidbody2D:
   serializedVersion: 4
