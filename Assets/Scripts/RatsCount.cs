@@ -5,7 +5,7 @@ using UnityEngine;
 public class RatsCount : MonoBehaviour
 {
     private static float initialRats = 100;
-    private static float finalRatCount = 1000000;
+    private static float finalRatCount = 100000;
     private static float initialSphereMass = 5f;
 
     private static float finalScaleX = 100f;

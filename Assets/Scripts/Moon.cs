@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Moon : MonoBehaviour
 {
-    private float finalDimensions = 100f;
-    private float scaleFactor = 100f;
+    private float finalDimensions = 50f;
+    private float scaleFactor = 20f;
     private RectTransform rt;
 
     private void Awake()
