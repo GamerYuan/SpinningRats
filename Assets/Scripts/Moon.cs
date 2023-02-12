@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Moon : MonoBehaviour
 {
-    private float finalDimensions = 50f;
-    private float scaleFactor = 20f;
-    private RectTransform rt;
+    private static float finalDimensions = 50f;
+    private static float scaleFactor = 20f;
+    private static RectTransform rt;
 
     private void Awake()
     {
-        this.rt = GetComponent<RectTransform>();
+        Moon.rt = GetComponent<RectTransform>();
+        SetMoonSize();
     }
 
-    private void Update()
-    {
-        Debug.Log("!!!");
+    public static void SetMoonSize() {
         float ratScale = RatsCount.RatScaleEvent();
         float newDimension = ratScale * finalDimensions * scaleFactor;
-        Debug.Log(newDimension);
+        //Debug.Log(newDimension);
         rt.sizeDelta = new Vector2(newDimension, newDimension);
     }
+
 }

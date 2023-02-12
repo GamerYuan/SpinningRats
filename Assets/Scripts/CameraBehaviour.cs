@@ -25,6 +25,7 @@ public class CameraBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ratCount == null) { return; }
         cam.m_Lens.OrthographicSize = ratCount.GetSphereSize() * 3 * ortho;
     }
 }

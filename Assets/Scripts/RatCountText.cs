@@ -10,7 +10,7 @@ public class RatCountText : MonoBehaviour
     private void Awake()
     {
         RatCountText.numRats = GetComponent<TMP_Text>();
-        RatCountText.numRats.text = "100";
+        RatCountText.numRats.text = RatsCount.RatCountEvent().ToString();
     }
 
     public static void UpdateText(float numRats)
