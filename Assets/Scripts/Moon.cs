@@ -11,7 +11,10 @@ public class Moon : MonoBehaviour
     private void Awake()
     {
         Moon.rt = GetComponent<RectTransform>();
-        SetMoonSize();
+        float ratScale = RatsCount.GetInitialScale();
+        float newDimension = ratScale * finalDimensions * scaleFactor;
+        //Debug.Log(newDimension);
+        rt.sizeDelta = new Vector2(newDimension, newDimension);
     }
 
     public static void SetMoonSize() {

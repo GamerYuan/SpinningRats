@@ -20,7 +20,6 @@ public class RatsCount : MonoBehaviour
 
     public delegate float RatScale();
     public static RatScale RatScaleEvent;
-    public static RatScale RatCountEvent;
 
     private Rigidbody2D rb2D;
     private ParticleSystem DamageParticles;
@@ -31,7 +30,6 @@ public class RatsCount : MonoBehaviour
         this.ChangeSphereSize();
         this.ChangeSphereMass();
         RatsCount.RatScaleEvent += GetRatScale;
-        RatsCount.RatCountEvent += GetRatCount;
         this.DamageParticles = transform.GetChild(2).GetComponent<ParticleSystem>();
         DamageParticles.Stop();
     }
@@ -54,11 +52,18 @@ public class RatsCount : MonoBehaviour
     private void OnDestroy()
     {
         RatsCount.RatScaleEvent -= GetRatScale;
-        RatsCount.RatCountEvent -= GetRatCount;
     }
 
     public float GetRatCount() {
         return this.ratCount;
+    }
+
+    public static float GetInitialRatCount() {
+        return RatsCount.initialRats;
+    }
+
+    public static float GetInitialScale() {
+        return RatsCount.initialRats / RatsCount.finalRatCount;
     }
 
     public float GetSphereSize() {
