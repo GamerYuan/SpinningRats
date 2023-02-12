@@ -47,12 +47,12 @@ MonoBehaviour:
   AsteroidTypes:
   - {fileID: 2432692649184224006, guid: f5c8def62d2eb4e0a90590ec86c0efcb, type: 3}
   - {fileID: 2432692649184224006, guid: 23ff533fb3e15412e9e217aca3b910af, type: 3}
-  numAsteroids: 10
-  xMin: -20
-  xMax: 20
-  yMin: -20
-  yMax: 20
+  numAsteroids: 100
+  xMin: 0
+  xMax: 200
+  yMin: 0
+  yMax: 200
   minAsteroidMass: 10
-  maxAsteroidMass: 300
-  massLengthRatio: 100
-  unscaledAsteroidWidth: 2
+  maxAsteroidMass: 100000
+  asteroidSizeFactor: 0.35
+  unscaledAsteroidLength: 6

@@ -12,16 +12,16 @@ public class AsteroidManager : MonoBehaviour
     [SerializeField] private float yMax;
     [SerializeField] private float minAsteroidMass;
     [SerializeField] private float maxAsteroidMass;
-    [SerializeField] private float massLengthRatio;
-    [SerializeField] private float unscaledAsteroidWidth;
+    [SerializeField] private float asteroidSizeFactor;
+    [SerializeField] private float unscaledAsteroidLength;
 
     // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < numAsteroids; i++)
         {
-            float asteroidMass = Random.Range(minAsteroidMass, maxAsteroidMass);
-            float asteroidLength = asteroidMass / massLengthRatio;
+            float asteroidMass = Mathf.Pow(Random.Range(Mathf.Pow(minAsteroidMass, 0.3f), Mathf.Pow(maxAsteroidMass, 0.3f)), 1/0.3f);
+            float asteroidLength = Mathf.Pow(asteroidMass, 0.3f) * asteroidSizeFactor;
             Vector2 pos;
             int attempts = 0;
             do
@@ -35,7 +35,7 @@ public class AsteroidManager : MonoBehaviour
             }
             GameObject asteroid = Instantiate(AsteroidTypes[Random.Range(0, AsteroidTypes.Count)]);
             asteroid.transform.SetPositionAndRotation(pos, new Quaternion());
-            asteroid.transform.localScale *= asteroidLength / unscaledAsteroidWidth;
+            asteroid.transform.localScale *= asteroidLength / unscaledAsteroidLength;
             asteroid.GetComponent<Asteroid>().setMass(asteroidMass);
             asteroid.transform.parent = transform;
         }

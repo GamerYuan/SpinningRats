@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -19,15 +18,17 @@ public class PlayerMovement : MonoBehaviour
     
     private Rigidbody2D rb;
     private RatsCount ratCount;
-
+    private Transform particle;
     private ParticleSystem BoostParticles;
 
     void Awake()
     {
+        this.particle = transform.GetChild(1);
         this.BoostParticles = transform.GetChild(1).GetComponent<ParticleSystem>();
         BoostParticles.Stop();
         rb = GetComponent<Rigidbody2D>();
         ratCount = GetComponent<RatsCount>();
+        
     }
 
     // Update is called once per frame
@@ -45,12 +46,14 @@ public class PlayerMovement : MonoBehaviour
             timer = 1f;
         }
         
-        if ((Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.D)) || (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.D)))
+        if (((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))) ||
+            ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))))
         {
+            
             BoostParticles.Play();
             stopAnim = true;
             float rotation = (transform.eulerAngles.z + 90) * Mathf.Deg2Rad;
-            ratCount.Boost(-5);
+            ratCount.Boost();
             float currCount = ratCount.GetRatCount();
             float currSpeed = speed * currCount / initialMass;
             rb.AddForce(new Vector2(currSpeed * Mathf.Cos(rotation), currSpeed * Mathf.Sin(rotation)), ForceMode2D.Impulse);
@@ -68,8 +71,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontalMove != 0f)
         {
-            float currCount = ratCount.GetRatCount();
-            float currRot = degrees* currCount / initialMass;
+            // float currCount = ratCount.GetRatCount();
+            // float currRot = degrees* currCount / initialMass;
+            float currRot = degrees;
 
             if (horizontalMove > 0)
             {

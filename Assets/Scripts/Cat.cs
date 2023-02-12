@@ -8,7 +8,7 @@ public class Cat : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject player;
     private SpriteRenderer spi;
-
+    private Animator m_Animator;
     //CAT FIELDS
     [SerializeField] private float aggroRadius = 1f;
     [SerializeField] private float chaseSpeed = 1f;
@@ -72,6 +72,7 @@ public class Cat : MonoBehaviour
 
         void attemptDashAttack()
         {
+            m_Animator.CrossFade("catAtk", 1, -1, 0, 0);
             var toPlayer = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
             float vectorMagnitude = toPlayer.magnitude;
             var unitToPlayer = new Vector2((toPlayer.x / vectorMagnitude), (toPlayer.y / vectorMagnitude));
@@ -133,11 +134,17 @@ public class Cat : MonoBehaviour
         void Start()
         {
             spi = GetComponent<SpriteRenderer>();
+            m_Animator = GetComponent<Animator>();
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (Vector2.Distance(transform.position, player.transform.position) < 1f)
+            {
+                damage_player();
+            }
+
             if (rb.velocity.x < 0)
             {
                 spi.flipY = true;

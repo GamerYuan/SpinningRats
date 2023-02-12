@@ -1,4 +1,4 @@
-
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -11,17 +11,20 @@ public class CameraBehaviour : MonoBehaviour
     private GameObject player;
 
     private RatsCount ratCount;
+    private CinemachineVirtualCamera cam;
     private float currRatCount;
     private float ortho;
 
     void Start()
     {
         ratCount = player.GetComponent<RatsCount>();
+        cam = GetComponent<CinemachineVirtualCamera>();
+        ortho = cam.m_Lens.OrthographicSize;
     }
 
     // Update is called once per frame
     void Update()
     {
-        currRatCount = ratCount.GetRatCount();
+        cam.m_Lens.OrthographicSize = ratCount.GetSphereSize() * 3 * ortho;
     }
 }
