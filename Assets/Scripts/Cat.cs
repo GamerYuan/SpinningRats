@@ -13,7 +13,7 @@ public class Cat : MonoBehaviour
     [SerializeField] private float aggroRadius = 1f;
     [SerializeField] private float chaseSpeed = 1f;
     [SerializeField] private float patrolSpeed = 1f;
-    [SerializeField] private int catDamage = 10;
+    [SerializeField] private int minCatDamage = 10;
 
     //ATTACK & PATROL VARIABLES
     private bool patrolState = true;
@@ -67,7 +67,7 @@ public class Cat : MonoBehaviour
         void damage_player()
         {
             RatsCount smth = player.GetComponent<RatsCount>();
-            smth.ChangeRatCount((-1) * catDamage);
+            smth.ChangeRatCount((-1) * Mathf.Max(minCatDamage, smth.GetRatCount() * 0.1f));
         }
 
         void attemptDashAttack()
