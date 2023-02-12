@@ -26,7 +26,6 @@ public class CameraBehaviour : MonoBehaviour
     void Update()
     {
         if (ratCount == null) { return; }
-        if (ratCount.GetRatCount() == 0) { return; }
         cam.m_Lens.OrthographicSize = ratCount.GetSphereSize() * 3 * ortho;
     }
 }

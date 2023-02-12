@@ -29,6 +29,8 @@ public class Cat : MonoBehaviour
     private bool runAggroDisallowedTimer = false;
     private float aggroDisallowedTimer = 0f;
     [SerializeField] private float dashSpeed = 8f;
+    private float damageTimer = 1f;
+    private bool isDamageTimer = false;
 
     //WAYPOINTS FOR CAT PATROL PATH
     [SerializeField] private Transform[] patrolWaypoints;
@@ -67,7 +69,7 @@ public class Cat : MonoBehaviour
         void damage_player()
         {
             RatsCount smth = player.GetComponent<RatsCount>();
-            smth.ChangeRatCount((-1) * Mathf.Max(minCatDamage, smth.GetRatCount() * 0.1f));
+            smth.ChangeRatCount((-1) * Mathf.Max(minCatDamage, smth.GetRatCount() * 0.15f));
         }
 
         void attemptDashAttack()
@@ -141,10 +143,24 @@ public class Cat : MonoBehaviour
         void Update()
         {
             if (player == null) { return; }
-            
+
+            if (isDamageTimer)
+            {
+                damageTimer = damageTimer - Time.deltaTime;
+            }
+            if (damageTimer < 0)
+            {
+                damageTimer = 1f;
+                isDamageTimer = false;
+            }
+
             if (Vector2.Distance(transform.position, player.transform.position) < 1f)
             {
-                damage_player();
+                if (!isDamageTimer)
+                {
+                    damage_player();
+                    isDamageTimer = true;
+                }
             }
             
             if (rb.velocity.x < 0)
